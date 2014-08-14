@@ -3,6 +3,8 @@ require 'hand/two_pairs'
 require 'hand/three_of_kind'
 require 'hand/straight'
 require 'hand/flush'
+require 'hand/straight_flush'
+require 'hand/royal_flush'
 
 def cards(codes)
   codes.map { |c| Card.new(c) }
@@ -65,5 +67,33 @@ describe Flush do
 
   it 'matches a flush' do
     expect(hand.matches? cards(%w(2S 3S 4S 5S 7S))).to be true
+  end
+end
+
+describe StraightFlush do
+  subject(:hand) { StraightFlush.new }
+
+  it 'does not match a low flush' do
+    expect(hand.matches? cards(%w(2S 3S 4S 5S 7S))).to be false
+  end
+
+  it 'does not match a mixed straight' do
+    expect(hand.matches? cards(%w(2S 3D 4C 5H 6S))).to be false
+  end
+
+  it 'matches a straight flush' do
+    expect(hand.matches? cards(%w(2S 3S 4S 5S 6S))).to be true
+  end
+end
+
+describe RoyalFlush do
+  subject(:hand) { RoyalFlush.new }
+
+  it 'does not match a low straight flush' do
+    expect(hand.matches? cards(%w(9S TS JS QS KS))).to be false
+  end
+
+  it 'matches a royal flush' do
+    expect(hand.matches? cards(%w(TS JS QS KS AS))).to be true
   end
 end
