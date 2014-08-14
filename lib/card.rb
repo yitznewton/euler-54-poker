@@ -5,6 +5,7 @@ class Card
   attr_reader :suit
 
   RANKS = ('2'..'9').to_a.concat %w(T J Q K A)
+  ACE = RANKS.length - 1
 
   def initialize(code)
     @rank = RANKS.index(code[0])

@@ -18,8 +18,7 @@ class Hand
   end
 
   def ace?
-    ranks = cards.map(&:rank)
-    ranks.include?(Card::RANKS.length - 1)
+    cards.map(&:rank).include?(Card::ACE)
   end
 
   def self.from_string(string)
