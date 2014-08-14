@@ -7,4 +7,4 @@ ruby:
   - 2.1
 
 script:
-  - bundle exec rspec
+  - make -k ci

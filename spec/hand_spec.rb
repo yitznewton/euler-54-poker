@@ -10,9 +10,8 @@ require 'hand_matcher/n_of_kind'
 
 describe Hand do
   describe '::from_string' do
-    it 'returns expected Hand' do
-      expect(Hand.from_string('2C 3S')).to eq Hand.new([Card.new('2C'), Card.new('3S')])  
-    end
+    subject { Hand.from_string('2C 3S') }
+    it { is_expected.to eq Hand.new([Card.new('2C'), Card.new('3S')]) }
   end
 
   describe '#high_card' do

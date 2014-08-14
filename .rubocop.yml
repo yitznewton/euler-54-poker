@@ -1,0 +1,6 @@
+Documentation:
+  Enabled: false
+
+Style/MethodLength:
+  Exclude:
+    - lib/hand_ranker.rb

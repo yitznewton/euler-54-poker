@@ -17,7 +17,12 @@ class Hand
     cards.sort_by(&:rank).last
   end
 
+  def ace?
+    ranks = cards.map(&:rank)
+    ranks.include?(Card::RANKS.length - 1)
+  end
+
   def self.from_string(string)
-    self.new(string.split(' ').map { |s| Card.new(s) })
+    new(string.split(' ').map { |s| Card.new(s) })
   end
 end
