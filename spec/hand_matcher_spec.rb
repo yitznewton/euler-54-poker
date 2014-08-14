@@ -1,10 +1,10 @@
-require 'hand/two_pairs'
-require 'hand/straight'
-require 'hand/flush'
-require 'hand/straight_flush'
-require 'hand/royal_flush'
-require 'hand/full_house'
-require 'hand/n_of_kind'
+require 'hand_matcher/two_pairs'
+require 'hand_matcher/straight'
+require 'hand_matcher/flush'
+require 'hand_matcher/straight_flush'
+require 'hand_matcher/royal_flush'
+require 'hand_matcher/full_house'
+require 'hand_matcher/n_of_kind'
 
 def cards(codes)
   codes.map { |c| Card.new(c) }
