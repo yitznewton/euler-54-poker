@@ -42,3 +42,15 @@ describe ThreeOfKind do
     expect(hand.matches? cards(%w(2S 2D 2C))).to be true
   end
 end
+
+describe Straight do
+  subject(:hand) { Straight.new }
+
+  it 'does not match a 4-card run' do
+    expect(hand.matches? cards(%w(2S 3D 4C 5H))).to be false
+  end
+
+  it 'matches a straight' do
+    expect(hand.matches? cards(%w(2S 3D 4C 5H 6S))).to be true
+  end
+end
