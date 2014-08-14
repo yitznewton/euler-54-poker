@@ -1,0 +1,10 @@
+language: ruby
+
+before_script:
+  - bundle install
+
+ruby:
+  - 2.1
+
+script:
+  - bundle exec rspec
