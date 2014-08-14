@@ -1,4 +1,5 @@
 require 'hand/one_pair'
+require 'hand/two_pairs'
 
 def cards(*codes)
   codes.map { |c| Card.new(c) }
@@ -13,5 +14,17 @@ describe OnePair do
   it 'matches a pair' do
     hand = OnePair.new
     expect(hand.matches? cards('2S', '2D')).to be true
+  end
+end
+
+describe TwoPairs do
+  it 'does not match a single pair' do
+    hand = TwoPairs.new
+    expect(hand.matches? cards('2S', '2D')).to be false
+  end
+
+  it 'matches two pairs' do
+    hand = TwoPairs.new
+    expect(hand.matches? cards('2S', '2D', '4S', '4D')).to be true
   end
 end
