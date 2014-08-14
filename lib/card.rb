@@ -14,8 +14,4 @@ class Card
   def <=>(other)
     @rank <=> other.rank
   end
-
-  def ==(other)
-    @rank == other.rank
-  end
 end
