@@ -1,26 +1,13 @@
-require 'hand/one_pair'
 require 'hand/two_pairs'
-require 'hand/three_of_kind'
 require 'hand/straight'
 require 'hand/flush'
 require 'hand/straight_flush'
 require 'hand/royal_flush'
 require 'hand/full_house'
+require 'hand/n_of_kind'
 
 def cards(codes)
   codes.map { |c| Card.new(c) }
-end
-
-describe OnePair do
-  subject(:hand) { OnePair.new }
-
-  it 'does not match a single card' do
-    expect(hand.matches? cards(%w(2S))).to be false
-  end
-
-  it 'matches a pair' do
-    expect(hand.matches? cards(%w(2S 2D))).to be true
-  end
 end
 
 describe TwoPairs do
@@ -39,15 +26,40 @@ describe TwoPairs do
   end
 end
 
-describe ThreeOfKind do
-  subject(:hand) { ThreeOfKind.new }
+describe NOfKind do
+  context 'with 2' do
+    subject(:hand) { NOfKind.new(2) }
 
-  it 'does not match two pairs' do
-    expect(hand.matches? cards(%w(2S 2D 4S 4D))).to be false
+    it 'does not match a single card' do
+      expect(hand.matches? cards(%w(2S))).to be false
+    end
+
+    it 'matches a pair' do
+      expect(hand.matches? cards(%w(2S 2D))).to be true
+    end
   end
 
-  it 'matches three of a kind' do
-    expect(hand.matches? cards(%w(2S 2D 2C))).to be true
+  context 'with 3' do
+    subject(:hand) { NOfKind.new(3) }
+
+    it 'does not match two pairs' do
+      expect(hand.matches? cards(%w(2S 2D 4S 4D))).to be false
+    end
+
+    it 'matches three of a kind' do
+      expect(hand.matches? cards(%w(2S 2D 2C))).to be true
+    end
+  end
+
+  context 'with 4' do
+    subject(:hand) { NOfKind.new(4) }
+    it 'does not match three of a kind' do
+      expect(hand.matches? cards(%w(2S 2D 2C))).to be false
+    end
+
+    it 'matches four of a kind' do
+      expect(hand.matches? cards(%w(2S 2D 2C 2H))).to be true
+    end
   end
 end
 
@@ -107,7 +119,7 @@ describe FullHouse do
   subject(:hand) { FullHouse.new }
 
   it 'does not match three of a kind' do
-    expect(hand.matches? cards(%w(2s 2d 2c))).to be false
+    expect(hand.matches? cards(%w(2S 2D 2C))).to be false
   end
 
   it 'matches a full house' do
