@@ -1,5 +1,5 @@
 class FullHouse
-  def matches?(cards)
-    TwoPairs.new.matches?(cards) && NOfKind.new(3).matches?(cards)
+  def matches?(hand)
+    TwoPairs.new.matches?(hand) && NOfKind.new(3).matches?(hand)
   end
 end

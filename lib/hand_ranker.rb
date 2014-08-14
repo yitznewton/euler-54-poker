@@ -7,25 +7,40 @@ require_relative 'hand_matcher/full_house'
 require_relative 'hand_matcher/n_of_kind'
 
 class HandRanker
-  @@matchers = {
-    0 => NOfKind.new(2),
-    1 => TwoPairs.new,
-    2 => NOfKind.new(3),
-    3 => Straight.new,
-    4 => Flush.new,
-    5 => FullHouse.new,
-    6 => NOfKind.new(4),
-    7 => StraightFlush.new,
-    8 => RoyalFlush.new,
-  }
+  @@matchers = [
+    RoyalFlush.new,
+    StraightFlush.new,
+    NOfKind.new(4),
+    FullHouse.new,
+    Flush.new,
+    Straight.new,
+    NOfKind.new(3),
+    TwoPairs.new,
+    NOfKind.new(2),
+  ]
+
+  def compare(hand0, hand1)
+    hand_type_compare = rank(hand0) <=> rank(hand1)
+
+    if hand_type_compare == 0
+      hand0.high_card <=> hand1.high_card
+    else
+      hand_type_compare
+    end
+  end
+
+  private
 
   def rank(hand)
-    @@matchers.each do |k, matcher|
-      if matcher.matches?(hand.cards)
-        return k
+    indexes = (0..@@matchers.length).to_a.reverse
+    indexed_matchers = @@matchers.zip(indexes)
+
+    indexed_matchers.reduce(-1) do |memo, current|
+      if current[0].matches?(hand)
+        return current[1]
+      else
+        memo 
       end
     end
-
-    return -1
   end
 end

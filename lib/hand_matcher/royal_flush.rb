@@ -1,6 +1,6 @@
 class RoyalFlush
-  def matches?(cards)
-    ranks = cards.map(&:rank)
-    StraightFlush.new.matches?(cards) && ranks.include?(Card::RANKS.length-1)
+  def matches?(hand)
+    ranks = hand.cards.map(&:rank)
+    StraightFlush.new.matches?(hand) && ranks.include?(Card::RANKS.length-1)
   end
 end

@@ -3,8 +3,8 @@ class NOfKind
     @n = n
   end
 
-  def matches?(cards)
-    ranks = cards.group_by(&:rank)
+  def matches?(hand)
+    ranks = hand.cards.group_by(&:rank)
     ranks.values.map(&:length).max == @n
   end
 end

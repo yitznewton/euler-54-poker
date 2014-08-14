@@ -1,5 +1,5 @@
 class StraightFlush
-  def matches?(cards)
-    Straight.new.matches?(cards) && Flush.new.matches?(cards)
+  def matches?(hand)
+    Straight.new.matches?(hand) && Flush.new.matches?(hand)
   end
 end

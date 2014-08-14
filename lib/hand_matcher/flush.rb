@@ -1,6 +1,6 @@
 class Flush
-  def matches?(cards)
-    suits = cards.map(&:suit).uniq
+  def matches?(hand)
+    suits = hand.cards.map(&:suit).uniq
     suits.length == 1
   end
 end

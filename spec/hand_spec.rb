@@ -22,15 +22,4 @@ describe Hand do
       expect(hand.high_card).to eq Card.new('8S')
     end
   end
-
-  describe '#<=>' do
-    context 'with same-ranking hands' do
-      let(:hand0) { Hand.from_string('7D 3S 4D 5D 6D') }
-      let(:hand1) { Hand.from_string('2D 3S 4D 5D 6D') }
-
-      it 'favors the high card' do
-        expect(hand0).to be > hand1
-      end
-    end
-  end
 end
