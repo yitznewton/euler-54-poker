@@ -5,6 +5,7 @@ require 'hand/straight'
 require 'hand/flush'
 require 'hand/straight_flush'
 require 'hand/royal_flush'
+require 'hand/full_house'
 
 def cards(codes)
   codes.map { |c| Card.new(c) }
@@ -27,6 +28,10 @@ describe TwoPairs do
 
   it 'does not match a single pair' do
     expect(hand.matches? cards(%w(2S, 2D))).to be false
+  end
+
+  it 'does not match three of a kind' do
+    expect(hand.matches? cards(%w(2s 2d 2c))).to be false
   end
 
   it 'matches two pairs' do
@@ -95,5 +100,17 @@ describe RoyalFlush do
 
   it 'matches a royal flush' do
     expect(hand.matches? cards(%w(TS JS QS KS AS))).to be true
+  end
+end
+
+describe FullHouse do
+  subject(:hand) { FullHouse.new }
+
+  it 'does not match three of a kind' do
+    expect(hand.matches? cards(%w(2s 2d 2c))).to be false
+  end
+
+  it 'matches a full house' do
+    expect(hand.matches? cards(%w(2S 2D 2C 3S 3D))).to be true
   end
 end
