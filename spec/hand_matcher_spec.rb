@@ -15,7 +15,7 @@ describe '#match' do
     end
 
     it 'does not match three of a kind' do
-      expect(matcher.matches? Hand.from_string('2s 2d 2c')).to be false
+      expect(matcher.matches? Hand.from_string('2S 2d 2C')).to be false
     end
 
     it 'matches two pairs' do
