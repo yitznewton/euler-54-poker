@@ -4,7 +4,6 @@ require 'hand_matcher/two_pairs'
 require 'hand_matcher/straight'
 require 'hand_matcher/flush'
 require 'hand_matcher/straight_flush'
-require 'hand_matcher/royal_flush'
 require 'hand_matcher/full_house'
 require 'hand_matcher/n_of_kind'
 

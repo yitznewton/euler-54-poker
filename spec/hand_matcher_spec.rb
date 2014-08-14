@@ -2,7 +2,6 @@ require 'hand_matcher/two_pairs'
 require 'hand_matcher/straight'
 require 'hand_matcher/flush'
 require 'hand_matcher/straight_flush'
-require 'hand_matcher/royal_flush'
 require 'hand_matcher/full_house'
 require 'hand_matcher/n_of_kind'
 
@@ -97,18 +96,6 @@ describe '#match' do
 
     it 'matches a straight flush' do
       expect(matcher.matches? Hand.from_string('2S 3S 4S 5S 6S')).to be true
-    end
-  end
-
-  describe RoyalFlush do
-    subject(:matcher) { RoyalFlush.new }
-
-    it 'does not match a low straight flush' do
-      expect(matcher.matches? Hand.from_string('9S TS JS QS KS')).to be false
-    end
-
-    it 'matches a royal flush' do
-      expect(matcher.matches? Hand.from_string('TS JS QS KS AS')).to be true
     end
   end
 

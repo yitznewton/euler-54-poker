@@ -2,7 +2,6 @@ require_relative 'hand_matcher/two_pairs'
 require_relative 'hand_matcher/straight'
 require_relative 'hand_matcher/flush'
 require_relative 'hand_matcher/straight_flush'
-require_relative 'hand_matcher/royal_flush'
 require_relative 'hand_matcher/full_house'
 require_relative 'hand_matcher/n_of_kind'
 
@@ -34,7 +33,6 @@ class HandRanker
 
   def self.matchers
     [
-      RoyalFlush.new,
       StraightFlush.new,
       NOfKind.new(4),
       FullHouse.new,
