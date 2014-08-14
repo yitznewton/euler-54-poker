@@ -1,33 +1,31 @@
+require_relative 'hand_matcher/two_pairs'
+require_relative 'hand_matcher/straight'
+require_relative 'hand_matcher/flush'
+require_relative 'hand_matcher/straight_flush'
+require_relative 'hand_matcher/royal_flush'
+require_relative 'hand_matcher/full_house'
+require_relative 'hand_matcher/n_of_kind'
+
 class HandRanker
-  @@matchers = [
-    RoyalFlush.new,
-    StraightFlush.new,
-    NOfKind.new(4),
-    FullHouse.new,
-    Flush.new,
-    Straight.new,
-    NOfKind.new(3),
-    TwoPairs.new,
-    NOfKind.new(2),
-  ]
+  @@matchers = {
+    0 => NOfKind.new(2),
+    1 => TwoPairs.new,
+    2 => NOfKind.new(3),
+    3 => Straight.new,
+    4 => Flush.new,
+    5 => FullHouse.new,
+    6 => NOfKind.new(4),
+    7 => StraightFlush.new,
+    8 => RoyalFlush.new,
+  }
 
-  def compare(hand0, hand1)
-    matcher = @@matchers.detect { |m| m.matches?(hand0) || m.matches?(hand1) }
-
-    if matcher.nil?
-      high_card_compare(hand0, hand1)
-    elsif matcher.matches?(hand0) && matcher.matches?(hand1)
-      high_card_compare(hand0, hand1)
-    elsif matcher.matches?(hand0)
-      1
-    else
-      -1
+  def rank(hand)
+    @@matchers.each do |k, matcher|
+      if matcher.matches?(hand.cards)
+        return k
+      end
     end
-  end
 
-  def high_card_compare(hand0, hand1)
-    hand_0_max = hand0.map(&:rank).max 
-    hand_1_max = hand1.map(&:rank).max 
-    hand_0_max <=> hand_1_max
+    return -1
   end
 end

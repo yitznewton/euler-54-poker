@@ -6,10 +6,6 @@ describe Card do
   end
 
   describe '#<=>' do
-    it 'compares two cards of the same value' do
-      expect(card('2D')).to eq card('2S')
-    end
-
     it 'compares two cards of different numeric value' do
       expect(card('2D')).to be < card('3S')
     end
