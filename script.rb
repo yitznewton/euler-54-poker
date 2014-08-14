@@ -15,7 +15,7 @@ STDIN.read.split("\n").each do |line|
   p1_hand = Hand.from_string(line[0, 14])
   p2_hand = Hand.from_string(line[-15, 14])
 
-  if ranker.compare(p1_hand, p2_hand) == (-1)
+  if ranker.compare(p1_hand, p2_hand) == 1
     p1_wins += 1
   end
 end
