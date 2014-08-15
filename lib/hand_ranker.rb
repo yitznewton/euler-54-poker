@@ -12,13 +12,18 @@ class HandRanker
       cards_in_hand0 = matcher.matching_cards(hand0)
       cards_in_hand1 = matcher.matching_cards(hand1)
 
-      if cards_in_hand0.empty? && !cards_in_hand1.empty?
-        return -1
-      elsif cards_in_hand1.empty? && !cards_in_hand0.empty?
-        return 1
-      elsif !cards_in_hand0.empty? && !cards_in_hand1.empty?
-        return cards_in_hand0.max <=> cards_in_hand1.max
-      end
+      card_comparison = compare_cards(cards_in_hand0, cards_in_hand1)
+      return card_comparison if card_comparison
+    end
+  end
+
+  private
+
+  def compare_cards(a, b)
+    if a.empty? && b.empty?
+      nil
+    else
+      a <=> b
     end
   end
 
