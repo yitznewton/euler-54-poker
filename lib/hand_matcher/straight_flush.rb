@@ -1,5 +1,9 @@
 class StraightFlush
-  def matches?(hand)
-    Straight.new.matches?(hand) && Flush.new.matches?(hand)
+  def matching_cards(hand)
+    if Flush.new.matching_cards(hand).empty?
+      []
+    else
+      Straight.new.matching_cards(hand)
+    end
   end
 end

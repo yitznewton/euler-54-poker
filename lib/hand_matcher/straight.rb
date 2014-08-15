@@ -1,6 +1,11 @@
 class Straight
-  def matches?(hand)
+  def matching_cards(hand)
     ranks = hand.cards.map(&:rank).uniq
-    ranks.length == 5 && ranks.max - ranks.min == 4
+
+    if ranks.length == 5 && ranks.max - ranks.min == 4
+      ranks
+    else
+      []
+    end
   end
 end

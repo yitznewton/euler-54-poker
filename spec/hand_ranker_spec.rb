@@ -1,4 +1,5 @@
 require 'hand_ranker'
+require 'hand'
 
 describe HandRanker do
   subject(:ranker) { HandRanker.new }
