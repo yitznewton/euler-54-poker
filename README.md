@@ -1,3 +1,5 @@
+![build status](https://travis-ci.org/yitznewton/euler-54-poker.svg?branch=master)
+
 # Project Euler #54: Poker hands
 
 Original problem at https://projecteuler.net/problem=54
